@@ -1,7 +1,7 @@
-package Package3;
+package JavaJava3;
 
-import Package3.DBhandler;
-import Package1.ExcelExporter;
+import JavaJava3.DBhandler;
+import JavaJava3.ExcelExporter;
 
 import java.util.Scanner;
 
@@ -16,8 +16,10 @@ public class Main {
                     2. Создать таблицу в MySQL.
                     3. Ввести данные о всех студентах и сохранить список в MySQL с последующим табличным
                     (форматированным) выводом в консоль.
-                    4. Вывести данные о студенте по ID из MySQL.
-                    6. Сохранить все данные (вышеполученные результаты) из MySQL в Excel и вывести на экран 
+                    4. Ввести данные с последующим выводом отсортированного списка
+                    5. Удалить данные о студенте по ID
+                    6. Вывести данные о студенте по ID
+                    7. Сохранить все данные (вышеполученные результаты) из MySQL в Excel и вывести на экран 
                     0. Выход.""");
 
             String s = scanner.nextLine();
@@ -38,15 +40,25 @@ public class Main {
             case 3:
                 Students Student = new Students();
                 Student.inputStudentDetails();
+                Student.printOutList();
                 break;
 
             case 4:
                 SortedStudents sortedStudents = new SortedStudents();
                 sortedStudents.inputStudentDetails();
                 break;
+            case 5:
+                System.out.println("Введите ID студента, чтобы удалить");
+                DBhandler.DeleteStudentByID(Integer.parseInt(scanner.nextLine()));
+                break;
             case 6:
+                System.out.println("Введите ID студента, чтобы получить данные");
+                DBhandler.getStrFromBD(Integer.parseInt(scanner.nextLine()));
+                break;
+            case 7:
                 ExcelExporter exporter = new ExcelExporter();
                 exporter.export();
+                break;
             case 0:
                 System.out.println("Выход из программы...");
                 break;

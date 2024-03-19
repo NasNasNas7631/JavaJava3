@@ -1,4 +1,4 @@
-package Package3;
+package JavaJava3;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -18,19 +18,34 @@ public class Students {
 
         for (int i = 0; i < numOfStudents; i++) {
             System.out.println("Enter student ID:");
+
             studentID.add(scanner.next());
 
+
             System.out.println("Enter student specialty:");
-            studentSpecialty.add(scanner.next());
+            String specialty = scanner.next();
+            studentSpecialty.add(specialty);
+
 
             System.out.println("Enter student name:");
-            studentName.add(scanner.next());
+            String name = scanner.next();
+            studentName.add(name);
 
             System.out.println("Enter student group:");
-            studentGroup.add(scanner.next());
+            String group = scanner.next();
+            studentGroup.add(group);
+
+            DBhandler.saveString(specialty, name, group);
         }
     }
-
+    public void printOutList(){
+        System.out.println("Student list:");
+        System.out.format("%-15s %-20s %-20s %-15s\n", "ID", "Specialty", "Name", "Group");
+        for (String name : studentName) {
+            int index = this.getStudentName().indexOf(name);
+            System.out.format("%-15s %-20s %-20s %-15s\n", this.getStudentID().get(index), this.getStudentSpecialty().get(index), this.getStudentName().get(index), this.getStudentGroup().get(index));
+        }
+    }
     public int getNumOfStudents() {
         return numOfStudents;
     }
